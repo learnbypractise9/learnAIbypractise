@@ -1,4 +1,4 @@
-# bitBybit ⚡
+# BitByBit ⚡
 
 A Streamlit-based technical quiz portal. Pick a topic, choose a difficulty level, and test your knowledge with LLM-generated multiple-choice questions.
 
@@ -28,15 +28,10 @@ A Streamlit-based technical quiz portal. Pick a topic, choose a difficulty level
    pip install -r requirements.txt
    ```
 
-3. Set your Anthropic API key:
+3. Set your Groq API key:
    ```bash
    cp .env.example .env
    # edit .env and add your key
-   ```
-
-   Or export directly:
-   ```bash
-   export ANTHROPIC_API_KEY=your_key_here
    ```
 
 4. Run the app:
@@ -50,9 +45,10 @@ A Streamlit-based technical quiz portal. Pick a topic, choose a difficulty level
 
 ```
 bitBybit/
-├── app.py              # Main Streamlit app
-├── requirements.txt    # Python dependencies
-├── .env.example        # Sample environment file
+├──src/
+   ├── app.py              # Main Streamlit app
+├── requirements.txt       # Python dependencies
+├── .env.example           # Sample environment file
 ├── .gitignore
 └── README.md
 ```
@@ -60,7 +56,7 @@ bitBybit/
 ## How it works
 
 1. User selects topic + difficulty → "Start Quiz".
-2. App calls the Anthropic API with a JSON-only system prompt to generate 15 unique MCQs (with randomized phrasing/angles per call for variety).
+2. App calls the Groq API with a JSON-only system prompt to generate 15 unique MCQs (with randomized phrasing/angles per call for variety).
 3. 7 questions are randomly sampled and shuffled for the session.
 4. Each question is answered, locked, and explained one at a time.
 5. After question 7, total score is shown with a "New Quiz" reset option.
@@ -68,4 +64,4 @@ bitBybit/
 ## Tech Stack
 
 - [Streamlit](https://streamlit.io/) — frontend & app framework
-- [Anthropic API](https://docs.claude.com/) — question generation (Claude Sonnet)
+- [Groq API](https://console.groq.com/docs/overview) — question generation (model used: openai/gpt-oss-120b  *suitable for responding in structured JSON format)
